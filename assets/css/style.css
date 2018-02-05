@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: rgba(129, 54, 139, 1);
+    background: -moz-linear-gradient(left, rgba(129, 54, 139, 1) 0%, rgba(37, 55, 134, 1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(129, 54, 139, 1)), color-stop(100%, rgba(37, 55, 134, 1)));
+    background: -webkit-linear-gradient(left, rgba(129, 54, 139, 1) 0%, rgba(37, 55, 134, 1) 100%);
+    background: -o-linear-gradient(left, rgba(129, 54, 139, 1) 0%, rgba(37, 55, 134, 1) 100%);
+    background: -ms-linear-gradient(left, rgba(129, 54, 139, 1) 0%, rgba(37, 55, 134, 1) 100%);
+    background: linear-gradient(to right, rgba(129, 54, 139, 1) 0%, rgba(37, 55, 134, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#81368b', endColorstr='#253786', GradientType=1);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    animation-duration: 2s;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+}
+
+h3 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0.75;
+    }
+    50% {
+        opacity: 0.50;
+    }
+    75% {
+        opacity: 0.75;
+    }
+    100% {
+        opacity: 1;
+    }
+}
