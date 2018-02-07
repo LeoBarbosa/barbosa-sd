@@ -1,6 +1,7 @@
-const CACHE_GROUP = 'v1';
 
 self.addEventListener('install', function(event) {
+    const CACHE_GROUP = 'v1';
+    
     event.waitUntil(
         caches.open(CACHE_GROUP)
             .then(cache => {
@@ -9,7 +10,8 @@ self.addEventListener('install', function(event) {
                     'logo.png',
                     'style.css',
                     'sw.js',
-                    'favicon.png'
+                    'favicon.png',
+                    'sw.js'
                 ]);
             })
     );
@@ -22,7 +24,7 @@ self.addEventListener('activate', function(event) {
 });
 
 this.addEventListener('fetch', function(event) {
-
+    const CACHE_GROUP = 'v1';
     event.respondWith(
         caches.match(event.request)
             .then(result => {
@@ -30,10 +32,10 @@ this.addEventListener('fetch', function(event) {
                     .then(response => {
                         if (response.status == 200) {
                             caches.open(CACHE_GROUP).then(cache => {
-                                cache.put(event.request, response.clone());
+                                cache.put(event.request, response);
                             });
+                            return response;
                         }
-                        return response;
                     })
             })
     )
