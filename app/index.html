@@ -23,11 +23,22 @@
     <link rel="manifest" href="webapp-manifest.json">
 </head>
 
-<body>
-
-    <h4>Em breve...</h4>
-    <img class="logo" src="logo.png" alt="Barbosa Soluções Digitais">
-
+<body class="purple-background"> 
+    <div id="intro">
+        <h4>Em breve...</h4>
+        <!-- <img class="logo" src="logo.png" alt="Barbosa Soluções Digitais"> -->
+        <p>Enquanto isso podemos entrar em contato e explicar todas as nossas incríveis soluções!</p>
+        <button class="btn">Solicitar Orçamento</button>
+    </div>
+    <form action="https://us-central1-barbosa-sd-d973a.cloudfunctions.net/enviarEmail" method="POST">
+        <i class="close">x</i>
+        Preencha com seus dados e o mais rápido possível nossa equipe entrará em contato =)
+        <input type="text" name="name" placeholder="Nome:" required>
+        <input type="text" name="email"  placeholder="E-mail:" required>
+        <input type="text" name="company" placeholder="Empresa (opcional):">
+        <textarea name="message"  placeholder="Mensagem (opcional): "></textarea>
+        <button type="submit" class="btn">Enviar</button>
+    </form>
     <!-- FIREBASE INIT -->
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script>
