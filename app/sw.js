@@ -22,19 +22,20 @@ self.addEventListener('activate', function (event) {
     });
 });
 
-
 self.addEventListener('fetch', event => {
     event.respondWith(
-        caches.match(event.request, { ignoreSearch: true }).then(response => {
-            return response || fetch(event.request)
-            .then(res => {
-                if(res.status == 200) {
-                    caches.open(CACHE_GROUP).then(cache=> {
-                        cache.put(event.request, res.clone())
+        caches.match(event.request).then(cachedResponse => {
+            if (cachedResponse) {
+                return cachedResponse;
+            }
+
+            return caches.open(CACHE_GROUP).then(cache => {
+                return fetch(event.request).then(response => {
+                    return cache.put(event.request, response.clone()).then(() => {
+                        return response;
                     });
-                }
-                return res;
-            })
+                });
+            });
         })
     );
 });
@@ -50,5 +51,4 @@ self.addEventListener('push', function (event) {
         })
     )
 })
-
 

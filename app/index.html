@@ -11,13 +11,20 @@
     <meta name="revisit-after" content="7 days">
     <link rel="canonical" href="http://barbosasolucoesdigitais.com.br">
     <link rel="icon" type="image/png" href="favicon.png" hreflang="pt-br" />
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
     <title>Barbosa Soluções Digitais</title>
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#81368b">
+    <meta name="apple-mobile-web-app-title" content="BarbosaSD">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="msapplication-TileImage" content="favicon.png">
+    <meta name="msapplication-TileColor" content="#81368b">
     <link rel="manifest" href="webapp-manifest.json">
 </head>
 
 <body>
-    
+
     <h4>Em breve...</h4>
     <img class="logo" src="logo.png" alt="Barbosa Soluções Digitais">
 
@@ -47,11 +54,11 @@
                 }).catch(function (error) {
                     console.log('Service Worker Error: ', error);
                 });
-            
+
             navigator.serviceWorker
                 .ready
                 .then(ServiceWorkerRegistration => {
-                    ServiceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true});
+                    ServiceWorkerRegistration.pushManager.subscribe({ userVisibleOnly: true });
                 });
         }
     </script>
@@ -66,4 +73,5 @@
     <!-- NOTIFICATION INIT -->
 
 </body>
+
 </html>
