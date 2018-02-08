@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="barbosa soluções digitais, criação de sites, criação de aplicativos, criação de logo, identidade visual, criação de lojas virtuais, criaçaão de apps, desenvolvimento de sites, desenvolvimento de lojas vituais, desenvolvimento de aplicativos, aplicativos híbridos"/>
+    <meta name="Description" content="barbosa soluções digitais, criação de sites, criação de aplicativos, criação de logo, identidade visual, criação de lojas virtuais, criaçaão de apps, desenvolvimento de sites, desenvolvimento de lojas vituais, desenvolvimento de aplicativos, aplicativos híbridos"
+    />
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="Index, follow">
     <meta name="revisit-after" content="7 days">
     <link rel="canonical" href="http://barbosasolucoesdigitais.com.br">
     <link rel="icon" type="image/png" href="favicon.png" hreflang="pt-br" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
     <title>Barbosa Soluções Digitais</title>
     <link rel="manifest" href="webapp-manifest.json">
 </head>
 
 <body>
+    
     <h4>Em breve...</h4>
     <img class="logo" src="logo.png" alt="Barbosa Soluções Digitais">
 
-
-    <script src="sw.js"></script>
+    <!-- FIREBASE INIT -->
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -33,37 +34,36 @@
             messagingSenderId: "374373234136"
         };
         firebase.initializeApp(config);
+    </script>
+    <!-- FIREBASE INIT -->
 
-        // Service Worker
+    <!-- SERVICE WORKER INIT -->
+    <script src="./sw.js"></script>
+    <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('./sw.js')
                 .then(function (reg) {
-                    console.log('Alright, yeah!', reg.scope);
+                    console.log('Service Worker Running!', reg.scope);
                 }).catch(function (error) {
-                    console.log('Oops!', error);
-                })
+                    console.log('Service Worker Error: ', error);
+                });
             
             navigator.serviceWorker
                 .ready
-                .then(serviceWorkerRegistration => {
-                    serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
-                })
+                .then(ServiceWorkerRegistration => {
+                    ServiceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true});
+                });
         }
-
-        // Web Notification
-        Notification.requestPermission().then(result => {
-            console.log(result);
-        })
-
-        // First Notification
-        var options = {
-            body: 'Agradecemos a preferência!',
-            icon: 'favicon.png'
-        }
-
-        var n = new Notification('Seja bem-vindo!', options);
-        setTimeout(n.close.bind(n), 4000);
-
     </script>
+    <!-- SERVICE WORKER INIT -->
+
+    <!-- NOTIFICATION INIT -->
+    <script>
+        Notification.requestPermission((status) => {
+            console.log('Notification permission: ', status);
+        });
+    </script>
+    <!-- NOTIFICATION INIT -->
+
 </body>
 </html>
