@@ -57,17 +57,17 @@ img {
     border-radius: 5px;
     margin-top: 35px;
     cursor: pointer;
-    -webkit-transition: 1s all;
-    -ms-transition: 1s all;
-    transition: 1s all;
+    -webkit-transition: background .3s;
+    -ms-transition: background .3s;
+    transition: background .3s;
 }
 
 .btn:hover {
     background: rgba(129, 54, 139, 1);
     color: white;
-    -webkit-transition: 1s all;
-    -ms-transition: 1s all;
-    transition: 1s all;
+    -webkit-transition: background .3s;
+    -ms-transition: background .3s;
+    transition: background .3s;
 }
 
 input,
@@ -80,11 +80,10 @@ textarea {
 }
 
 form {
-    visibility: hidden;
+    display: none;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     padding: 30px 20px 20px 20px;
-    display: flex;
     flex-direction: column;
     text-align: center;
     position: relative;
