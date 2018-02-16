@@ -3,31 +3,35 @@ const functions  = require('firebase-functions');
 const nodemailer = require('nodemailer');
 const cors = require('cors')({origin: true});
 
-let url = "smtps://leotecnico777%40gmail.com:"+encodeURIComponent('Shacker@12') + "@smtp.gmail.com:465";
-let transporter = nodemailer.createTransport(url);
+let transporter = nodemailer.createTransport({
+ service: 'gmail',
+ auth: {
+        user: 'leotecnico777@gmail.com',
+        pass: 'Shacker@12'
+    }
+});
 
 exports.enviarEmail = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
-    let remetente = req.body['name'] + ' ' + req.body['email'];
+    console.log('BODY => ', req.body);
+    let remetente = req.body['name'];
 
-    let assunto = req.body['assunto'];
-    let destinatarios = req.body['destinatarios']; // lista de e-mails destinatarios separados por ,
-    let corpo = req.body['corpo'];
-    let corpoHtml = req.body['corpoHtml'];
+    let assunto = 'Solicitação de Orçamento';
+    let destinatarios = 'barbosasolucoesdigitais@gmail.com';
+    // let corpo = req.body['corpo'];
+    let corpoHtml = '<b>Nome:</b> ' + req.body['name'] + '<br /> <b>E-mail:</b> ' + req.body['email'] + '<br/><b>Compania:</b> ' + req.body['company'] + '<br/><b>Mensagem:</b> ' + req.body['message'];
 
     let email = {
         from: remetente,
         to: destinatarios,
         subject: assunto,
-        text: corpo,
+        // text: corpo,
         html: corpoHtml
     };
 
-    transporter.sendMail(email, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log('Mensagem %s enviada: %s', info.messageId, info.response);
+    transporter.sendMail(email, (err, info) => {
+        console.log(info, err);
     });
+
   });
 });
